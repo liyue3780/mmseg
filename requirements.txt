@@ -1,0 +1,5 @@
+numpy==1.23.5
+picsl_c3d==1.4.2.2
+picsl_greedy==0.0.6
+SimpleITK==2.2.1
+SimpleITK==2.5.0
