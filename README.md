@@ -1,5 +1,5 @@
 # Overview
-`mmseg` is a robust pipeline designed for medial temporal lobe (MTL) subregion segmentation using multi-modality brain MRI data (7T and 3T). The details of the method can be found in our [paper](https://www.biorxiv.org/content/10.1101/2024.05.21.595190v1)
+`mmseg` is a robust pipeline designed for medial temporal lobe (MTL) subregion segmentation using multi-modality brain MRI data (7T and 3T). The details of the method can be found in our [paper: https://doi.org/10.1101/2024.05.21.595190](https://www.biorxiv.org/content/10.1101/2024.05.21.595190v1)
 ```bash
 Li, Y., Xie, L., Khandelwal, P., Wisse, L.E., Brown, C.A., Prabhakaran, K., Tisdall, M.D., Mechanic-Hamilton, D., Detre, J.A., Das, S.R. and Wolk, D.A., 2024. Automatic segmentation of medial temporal lobe subregions in multi-scanner, multi-modality MRI of variable quality. bioRxiv.
 ```
@@ -37,10 +37,10 @@ This project requires the following dependencies to be installed before use:
 
 ### 1. Data Availability
 - **Training Data & Manual Segmentations**  
-    The training data and corresponding manual segmentations (following Penn Aging Brain Cohort (ABC) protocol) have been published and are available via [Dryad](doi). The training set has been well registered to the 7T-T2w modality. Due to the need for anonymity, it is in nnUNet standard training data format, you don't have to reformat it. The fake image IDs are organized such that every two consecutive IDs (e.g., `001` and `002`, `009` and `010`) corresponds to the left and right sides of the same subject, respectively. The cross-validation folds should be splitted based on subjects. The `splits_final.json`, which saves the five-fold cross-validation splits in our training process, has been provided along with the training data. It should be manually copied to the preprocessed folder [nnUNet_preprocessed](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/set_environment_variables.md) (e.g. `nnUNet_preprocessed/DatasetXXX_MYDATASET/`) if you need to used it.
+    The training data and corresponding manual segmentations (following Penn Aging Brain Cohort (ABC) protocol) have been published and are available via [Dryad: https://doi.org/10.5061/dryad.0zpc8676p](https://doi.org/10.5061/dryad.0zpc8676p). The training set has been well registered to the 7T-T2w modality. Due to the need for anonymity, it is in nnUNet standard training data format, you don't have to reformat it. The fake image IDs are organized such that every two consecutive IDs (e.g., `001` and `002`, `009` and `010`) corresponds to the left and right sides of the same subject, respectively. The cross-validation folds should be splitted based on subjects. The `splits_final.json`, which saves the five-fold cross-validation splits in our training process, has been provided along with the training data. It should be manually copied to the preprocessed folder [nnUNet_preprocessed](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/set_environment_variables.md) (e.g. `nnUNet_preprocessed/DatasetXXX_MYDATASET/`) if you need to used it.
 
 - **Trained Model Checkpoint**  
-    If you want to run our trained model directly on your own data, you can download our [nnUNet checkpoint](doi2) trained with five-fold cross-validation. The trained model should be placed under folder [nnUNet_results](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/set_environment_variables.md) (e.g. `nnUNet_results/DatasetXXX_MYDATASET/`) as expected by nnU-Net. Finally, you can follow [Step 3](#3-run-inference) to run the inference.
+    If you want to run our trained model directly on your own data, you can download our [nnUNet checkpoint](https://doi.org/10.5061/dryad.0zpc8676p) trained with five-fold cross-validation. The trained model should be placed under folder [nnUNet_results](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/set_environment_variables.md) (e.g. `nnUNet_results/DatasetXXX_MYDATASET/`) as expected by nnU-Net. Finally, you can follow [Step 3](#3-run-inference) to run the inference.
 
 - **Test Data**  
     We use an independent public dataset released by [Chu et al.](https://www.nature.com/articles/s41597-025-04586-9) in [**A paired dataset of multi-modal MRI at 3 Tesla and 7 Tesla with manual hippocampal subfield segmentations, 2025** (2025)](https://www.nature.com/articles/s41597-025-04586-9). Please download the dataset from [Figshare+ Link](https://plus.figshare.com/articles/dataset/A_paired_dataset_of_multi-modal_MRI_at_3_Tesla_and_7_Tesla_with_manual_hippocampal_subfield_segmentations_on_7T_T2-weighted_images/26075713/1). Since the correspondence author is from Beijing Normal University, China, we call this dataset **BNU dataset** for short. If you use their dataset in your work, please cite the original paper: 
@@ -85,11 +85,11 @@ After format convertion, you can run the following command to finish the segment
 ```bash
 python src/run_inference.py --dataset_path path/to/dataset --template_path path/to/3tt1/template
 ```
-where `dataset_path` is the folder that saves all subjects with standard whole-brain images (after name convertion) and `template_path` is the folder that saves the 3T-T1w template (downloaded template [here](fake_link)).  
+where `dataset_path` is the folder that saves all subjects with standard whole-brain images (after name convertion) and `template_path` is the folder that saves the 3T-T1w template (downloaded template [here](https://doi.org/10.5061/dryad.0zpc8676p)).  
 
 Segmentations will be saved with names `seg_left.nii.gz` and `seg_right.nii.gz` in the each subject folder. They are in left and right MTL patch spaces. 
 
-Other intermediate results are saved at the same time. For example, you can open `patch_left_7tt2.nii.gz`, `patch_left_3tt2_to_7tt2.nii.gz`, `patch_left_3t_t1_to_7t_t2.nii.gz`, which are cropped and registered patches of left-side MTL ROI in corresponding modality, along with `seg_left.nii.gz` to check segmentation result. All segmentations of this model on BNU dataset are available [here](fake_link)
+Other intermediate results are saved at the same time. For example, you can open `patch_left_7tt2.nii.gz`, `patch_left_3tt2_to_7tt2.nii.gz`, `patch_left_3t_t1_to_7t_t2.nii.gz`, which are cropped and registered patches of left-side MTL ROI in corresponding modality, along with `seg_left.nii.gz` to check segmentation result. All segmentations of this model on BNU dataset are available [here](https://doi.org/10.5061/dryad.0zpc8676p)
 
 # Results
 The data from independent test set was processed successfully by our proposed pipeline. The following flowchart is the real steps of subject 01 from BNU dataset.
