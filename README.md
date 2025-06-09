@@ -1,4 +1,7 @@
+[![DOI](https://zenodo.org/badge/995671386.svg)](https://doi.org/10.5281/zenodo.15627106)
+
 # Overview
+
 `mmseg` is a robust pipeline designed for medial temporal lobe (MTL) subregion segmentation using multi-modality brain MRI data (7T and 3T). The details of the method can be found in our [paper: https://doi.org/10.1101/2024.05.21.595190](https://www.biorxiv.org/content/10.1101/2024.05.21.595190v1)
 ```bash
 Li, Y., Xie, L., Khandelwal, P., Wisse, L.E., Brown, C.A., Prabhakaran, K., Tisdall, M.D., Mechanic-Hamilton, D., Detre, J.A., Das, S.R. and Wolk, D.A., 2024. Automatic segmentation of medial temporal lobe subregions in multi-scanner, multi-modality MRI of variable quality. bioRxiv.
